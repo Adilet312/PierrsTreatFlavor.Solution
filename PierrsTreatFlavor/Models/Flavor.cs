@@ -6,7 +6,7 @@ namespace PierrsTreatFlavor.Models
     {
         public int FlavorId {get;set;}
         public string FlavorName {get;set;}
-        public string FlavorDescription {get; set;}
+        public DateTime FlavorDateExpiration {get; set;}
         public double FlavorPrice {get;set;}
         public ICollection<TreatFlavor> Treats {get;set;}
         public virtual ApplicationUser User {get;set;}

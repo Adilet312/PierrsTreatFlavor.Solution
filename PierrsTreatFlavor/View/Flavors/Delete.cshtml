@@ -1,0 +1,13 @@
+@{
+  Layout = "_Layout";
+}
+
+@model PierrsTreatFlavor.Models.Flavor
+
+<h2>Are you sure you want to delete this flavor?</h2>
+<h3>Flavor name: @Html.DisplayFor(model=>model.FlavorName) Date expiration: @Html.DisplayFor(model=>model.FlavorDateExpiration),Price: @Html.DisplayFor(model=>model.FlavorPrice)</h3>
+@using (Html.BeginForm())
+{
+    <input type="submit" value="Delete" />
+}
+@Html.ActionLink("Back to List", "Index")
