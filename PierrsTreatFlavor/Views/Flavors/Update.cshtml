@@ -11,13 +11,11 @@
 {
     @Html.HiddenFor(model => model.FlavorId)
 
-    <h3>Please enter flavor name:     @Html.TextBoxFor(model => model.PetName )</h3>
+    <h3>Please enter flavor name:     @Html.TextBoxFor(model => model.FlavorName )</h3>
     <h3>Please enter expiration date: @Html.EditorFor(model => model.FlavorDateExpiration, new { @type = "date" })</h3>
     <h3>Please enter price:           @Html.TextBoxFor(model => model.FlavorPrice, new { type = "number", min = "0", step = "0.01" })</h3>
     <h3>@Html.Label("Select Treat:") @Html.DropDownList("TreatId","TreatName")</h3>
 
-    <input type="submit" value="Update" />
+    <h3><input type="submit" value="Update" /></h3>
 }
-<h3>@Html.ActionLink("Back to list", "Index")</h3>
-<h3>@Html.ActionLink("Update Flavor", "Update", new { updateID = Model.FlavorId })</h3>
-<h3>@Html.ActionLink("Delete Flavor", "Delete", new { deleteID = Model.FlavorId })</h3>
+<h3>@Html.ActionLink("Home", "Index", "Home")</h3>

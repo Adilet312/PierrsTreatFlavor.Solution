@@ -6,8 +6,8 @@
 <h4>Add a new flavor</h4>
 @using (Html.BeginForm())
 {
-    <h3>Please enter flavor name:     @Html.TextBoxFor(model => model.PetName )</h3>
-    <h3>Please enter expiration date: @Html.EditorFor(model => model.FlavorDateExpiration, new { @type = "date" })</h3>
+    <h3>Please enter flavor name:     @Html.TextBoxFor(model => model.FlavorName )</h3>
+    <h3>Please enter expiration date: @Html.TextBoxFor(model => model.FlavorDateExpiration, new { @type = "date" })</h3>
     <h3>Please enter price:           @Html.TextBoxFor(model => model.FlavorPrice, new { type = "number", min = "0", step = "0.01" })</h3>
     <h3>@Html.Label("Select Treat:") @Html.DropDownList("TreatId","TreatName")</h3>
     <h3><input type="submit" value="Add new flavor" /></h3>

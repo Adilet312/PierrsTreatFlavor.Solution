@@ -1,0 +1,16 @@
+@{
+  Layout = "_Layout";
+}
+@model PierrsTreatFlavor.Models.Treat
+
+<h4>Add a new treat</h4>
+@using (Html.BeginForm())
+{
+    <h3>Please enter name:               @Html.TextBoxFor(model => model.TreatName )</h3>
+    <h3>Please enter date of baked:      @Html.TextBoxFor(model => model.TreatBakedDate,new { @type = "date" })</h3>
+    <h3>Please enter type of  treat:      @Html.TextBoxFor(model => model.TreatType)</h3>
+     <h3>@Html.Label("Select Flavor:") @Html.DropDownList("FlavorId","Please Select flavor ")</h3>
+    <h3><input type="submit" value="Add new treat" /></h3>
+}
+<h3>@Html.ActionLink("Show all treats", "Index")</h3>
+<h3>@Html.ActionLink("Return Home Page", "Index","Home")</h3>

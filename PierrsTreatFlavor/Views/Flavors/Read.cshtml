@@ -1,0 +1,44 @@
+
+@{
+  Layout = "_Layout";
+}
+
+@using PierrsTreatFlavor.Models; 
+@model PierrsTreatFlavor.Models.Flavor;
+<hr/>
+<h3>Flavor name: @Html.DisplayFor(model=>model.FlavorName) Date expiration: @Html.DisplayFor(model=>model.FlavorDateExpiration),Price: @Html.DisplayFor(model=>model.FlavorPrice)</h3>
+ <ul>
+    @if(@Model.Treats.Count == 0)
+    {
+        <p>no treats found </p>
+    }
+    else
+    {
+        <h3>Treats that belong to Flavor:</h3>
+         @foreach(var join in Model.Treats)
+        {
+             <h3><li>Treat: @join.Treat.TreatName Date of produced: @join.Treat.TreatBakedDate, Type of treat: @join.Treat.TreatType</li></h3> 
+
+        }
+    }
+</ul>
+<hr /> 
+
+
+<h3>@Html.ActionLink("Back to list of Flavors", "Index")</h3>
+<h3>@Html.ActionLink("Update Flavor", "Update", new { updateID = Model.FlavorId })</h3>
+<h3>@Html.ActionLink("Delete Flavor", "Delete", new { deleteID = Model.FlavorId })</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

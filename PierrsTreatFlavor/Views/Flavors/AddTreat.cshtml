@@ -4,17 +4,18 @@
 
 @model PierrsTreatFlavor.Models.Flavor
 
-<h2>Add a Treat</h2>
+<h2>Add a Treat for specific flavor</h2>
 
 <h4>Add treat to this flavor: @Html.DisplayFor(model => model.FlavorName)</h4>
 
 @using (Html.BeginForm())
 {
-    @Html.HiddenFor(model => model.PetId)
+    @Html.HiddenFor(model => model.FlavorId)
 
     <h3>@Html.Label("Select Treat:") @Html.DropDownList("TreatId","Please Select Treat ")</h3>
     <h3><input type="submit" value="Save" /></h3>
 
     
 }
-<h3><p>@Html.ActionLink("Back to list", "Index")</p></h3>
+<h3>@Html.ActionLink("Back to list of flavors", "Index")</h3>
+<h3>@Html.ActionLink("Add a Treat", "AddTreat", new { addTreatID = Model.FlavorId })</p>

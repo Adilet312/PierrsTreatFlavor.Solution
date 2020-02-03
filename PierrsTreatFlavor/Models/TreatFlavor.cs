@@ -1,9 +1,9 @@
 using System;
 namespace PierrsTreatFlavor.Models
 {
-    public class TeatFlavor
+    public class TreatFlavor
     {
-        public int TraetFlavor {get;set;}
+        public int TreatFlavorId {get;set;}
         public int TreatId {get;set;}
         public int FlavorId {get;set;}
         public Treat Treat {get;set;}

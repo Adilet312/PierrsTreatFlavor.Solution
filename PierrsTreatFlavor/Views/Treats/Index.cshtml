@@ -14,10 +14,9 @@
 
 @foreach (Treat treats in Model)
 {
-  <h3><li>@Html.ActionLink($"{treats.TreatName}", "read", new { id = treats.TreatId })</li></h3>
+  <h3><li>@Html.ActionLink($"{treats.TreatName}", "read", new { readID = treats.TreatId })</li></h3>
 }
 <hr/>
-<h3>@Html.ActionLink("Add new customer", "Create","Treats")</h3>
-
+<h3>@Html.ActionLink("Add new treat", "Create","Treats")</h3>
 <h3>@Html.ActionLink("Home", "Index", "Home")</h3>
 </center>

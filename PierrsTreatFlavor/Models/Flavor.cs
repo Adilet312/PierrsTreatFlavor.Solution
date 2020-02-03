@@ -9,11 +9,10 @@ namespace PierrsTreatFlavor.Models
         public DateTime FlavorDateExpiration {get; set;}
         public double FlavorPrice {get;set;}
         public ICollection<TreatFlavor> Treats {get;set;}
-        public virtual ApplicationUser User {get;set;}
         
         public Flavor()
         {
-            this.Treats = new HashSet<TraeFlavor>();
+            this.Treats = new HashSet<TreatFlavor>();
         }
     }
 }

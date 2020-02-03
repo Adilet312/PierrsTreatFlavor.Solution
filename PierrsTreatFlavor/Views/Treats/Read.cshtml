@@ -1,0 +1,27 @@
+@{
+  Layout = "_Layout";
+}
+
+@model PierrsTreatFlavor.Models.Treat;
+
+<h2>Treat Details</h2>
+<hr />
+ <h3>Name: @Html.DisplayFor(model=>model.TreatName), Date of Baked: @Html.DisplayFor(model=>model.TreatBakedDate), Type: @Html.DisplayFor(model=>model.TreatType)</h3>
+@if(@Model.Flavors.Count == 0)
+{
+  <h3>This treat does not own any flavor </h3>
+}
+else
+{
+  <h4>Flavors belong to the Treat:</h4>
+  <ul>
+  @foreach(var join in Model.Flavors)
+  {
+    <h3><li>Name: @join.Flavor.FlavorName Expiration Date : @join.Flavor.FlavorDateExpiration Price: @join.Flavor.FlavorPrice</li></h3>
+  }
+  </ul>
+}
+
+<h3>@Html.ActionLink("Back to list of treats", "Index")</h3>
+<h3>@Html.ActionLink("Update Treat", "Update", new { updateID = Model.TreatId })</h3>
+<h3>@Html.ActionLink("Delete Treat", "Delete", new { deleteID = Model.TreatId })</h3>

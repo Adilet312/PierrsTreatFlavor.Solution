@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PierrsTreatFlavor.Models;
- using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 
 namespace PierrsTreatFlavor
 {
@@ -24,23 +24,23 @@ namespace PierrsTreatFlavor
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddMvc();
-
       services.AddEntityFrameworkMySql()
-        .AddDbContext<TreatFlavorContextDB>(options => options
-        .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
-      services.AddIdentity<ApplicationUser, IdentityRole>()
-        .AddEntityFrameworkStores<TreatFlavorContextDB>()
-        .AddDefaultTokenProviders();
+      .AddDbContext<TreatFlavorContextDB>(options => options
+      .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
 
-        services.Configure<IdentityOptions>(options =>
-    {
-        options.Password.RequireDigit = false;
-        options.Password.RequiredLength = 0;
-        options.Password.RequireLowercase = false;
-        options.Password.RequireNonAlphanumeric = false;
-        options.Password.RequireUppercase = false;
-        options.Password.RequiredUniqueChars = 0;
-    });
+    //   services.AddIdentity<ApplicationUser, IdentityRole>()
+    //     .AddEntityFrameworkStores<TreatFlavorContextDB>()
+    //     .AddDefaultTokenProviders();
+
+    //     services.Configure<IdentityOptions>(options =>
+    // {
+    //     options.Password.RequireDigit = false;
+    //     options.Password.RequiredLength = 0;
+    //     options.Password.RequireLowercase = false;
+    //     options.Password.RequireNonAlphanumeric = false;
+    //     options.Password.RequireUppercase = false;
+    //     options.Password.RequiredUniqueChars = 0;
+    // });
     }
 
     
