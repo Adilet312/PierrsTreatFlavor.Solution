@@ -10,20 +10,25 @@ using System.Threading.Tasks;
 using System.Security.Claims;
 namespace PierrsTreatFlavor.Controllers
 {
-    
+    [Authorize] //new line
     public class FlavorsController:Controller
     {
         private readonly TreatFlavorContextDB _dataBase;
-        public FlavorsController(TreatFlavorContextDB db)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public FlavorsController(UserManager<ApplicationUser> userManager,TreatFlavorContextDB db)
         {
+            _userManager=userManager;
             _dataBase = db;
         }
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            List<Flavor> flavors = _dataBase.Flavors.ToList();
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
+            var userFlavors = _dataBase.Flavors.Where(entry => entry.User.Id == currentUser.Id);
             
-            return View(flavors);
+            return View(userFlavors);
         }
+ 
         [HttpGet]
         public ActionResult Read(int readID)
         {
@@ -40,9 +45,11 @@ namespace PierrsTreatFlavor.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Create(Flavor flavor, int TreatId)
+        public async Task<ActionResult> Create(Flavor flavor, int TreatId)
         {
-           
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
+            flavor.User = currentUser;
             _dataBase.Flavors.Add(flavor);
             if (TreatId != 0)
             {

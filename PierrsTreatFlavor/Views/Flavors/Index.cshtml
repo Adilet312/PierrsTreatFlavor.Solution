@@ -3,16 +3,12 @@
 }
 
 @using PierrsTreatFlavor.Models;
-@model List<PierrsTreatFlavor.Models.Flavor>
+@model IEnumerable<PierrsTreatFlavor.Models.Flavor>
 
-<h1>Flavors</h1>
 
-@if (@Model.Count==0)
-{
-  <h3>No flavors have been added yet!</h3>
-  
-} 
-else
+<h1>Flavors for @User.Identity.Name</h1>
+
+@if (@Model.Any())
 {
   <ul>
     @foreach (Flavor flavor in Model)
@@ -20,6 +16,12 @@ else
       <h3><li>@Html.ActionLink($"{flavor.FlavorName}", "Read", new { readID = flavor.FlavorId })</li></h3>
     }
   </ul>
+  
+  
+} 
+else
+{
+  <h3>No flavors have been added yet!</h3>
 }
 
 <h3>@Html.ActionLink("Add new flavor", "Create")</h3>

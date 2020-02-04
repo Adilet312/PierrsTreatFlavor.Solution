@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PierrsTreatFlavor.Models;
 
 namespace PierrsTreatFlavor.Migrations
 {
     [DbContext(typeof(TreatFlavorContextDB))]
-    partial class TreatFlavorContextDBModelSnapshot : ModelSnapshot
+    [Migration("20200204032033_addIdentity")]
+    partial class addIdentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -185,11 +187,7 @@ namespace PierrsTreatFlavor.Migrations
 
                     b.Property<double>("FlavorPrice");
 
-                    b.Property<string>("UserId");
-
                     b.HasKey("FlavorId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Flavors");
                 });
@@ -271,13 +269,6 @@ namespace PierrsTreatFlavor.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("PierrsTreatFlavor.Models.Flavor", b =>
-                {
-                    b.HasOne("PierrsTreatFlavor.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("PierrsTreatFlavor.Models.TreatFlavor", b =>
