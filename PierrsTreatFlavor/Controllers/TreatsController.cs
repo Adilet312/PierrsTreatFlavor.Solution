@@ -33,17 +33,13 @@ namespace PierrsTreatFlavor.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            ViewBag.FlavorId = new SelectList(_dataBase.Flavors,"FlavorId","FlavorName");
+            //ViewBag.FlavorId = new SelectList(_dataBase.Flavors,"FlavorId","FlavorName");
             return View();
         }
         [HttpPost]
-        public ActionResult Create(Treat new_treat,int FlavorId)
+        public ActionResult Create(Treat new_treat)
         {
             _dataBase.Treats.Add(new_treat);
-            if(FlavorId!=0)
-            {
-                _dataBase.TreatFlavors.Add(new TreatFlavor() { FlavorId = FlavorId, TreatId = new_treat.TreatId });
-            }
             _dataBase.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -51,16 +47,12 @@ namespace PierrsTreatFlavor.Controllers
         public ActionResult Update(int updateID)
         {
             Treat updatingTreat = _dataBase.Treats.FirstOrDefault(treats => treats.TreatId==updateID);
-            ViewBag.FlavorId = new SelectList(_dataBase.Flavors,"FlavorId","FlavorName");
+            //ViewBag.FlavorId = new SelectList(_dataBase.Flavors,"FlavorId","FlavorName");
             return View(updatingTreat);
         }
         [HttpPost]
-        public ActionResult Update(Treat new_treat,int FlavorId)
+        public ActionResult Update(Treat new_treat)
         {
-            if(FlavorId!=0)
-            {
-                _dataBase.TreatFlavors.Add(new TreatFlavor() { FlavorId = FlavorId, TreatId = new_treat.TreatId });
-            }
             _dataBase.Entry(new_treat).State=EntityState.Modified;
             _dataBase.SaveChanges();
             return RedirectToAction("Index");

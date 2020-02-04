@@ -18,7 +18,11 @@
          @foreach(var join in Model.Treats)
         {
              <h3><li>Treat: @join.Treat.TreatName Date of produced: @join.Treat.TreatBakedDate, Type of treat: @join.Treat.TreatType</li></h3> 
-
+            @using (Html.BeginForm("DeleteTreat","Flavors"))
+            {
+                @Html.Hidden("IdForDeletingTreatFromFlavor", @join.TreatFlavorId)
+                <h3><input type="submit" value="Delete"/></h3>
+            }
         }
     }
 </ul>
@@ -28,6 +32,7 @@
 <h3>@Html.ActionLink("Back to list of Flavors", "Index")</h3>
 <h3>@Html.ActionLink("Update Flavor", "Update", new { updateID = Model.FlavorId })</h3>
 <h3>@Html.ActionLink("Delete Flavor", "Delete", new { deleteID = Model.FlavorId })</h3>
+<h3>@Html.ActionLink("Add new Treat", "AddTreat", new { addTreatID = Model.FlavorId })</h3>
 
 
 

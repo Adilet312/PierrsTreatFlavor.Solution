@@ -84,6 +84,32 @@ namespace PierrsTreatFlavor.Controllers
             _dataBase.SaveChanges();
             return View("Index");
         }
+        [HttpGet]
+        public ActionResult AddTreat(int addTreatID)
+        {
+            var flavor = _dataBase.Flavors.FirstOrDefault(flavors => flavors.FlavorId==addTreatID);
+            ViewBag.TreatId = new SelectList(_dataBase.Treats,"TreatId","TreatName");
+            return View(flavor);
+        }
+        [HttpPost]
+        public ActionResult AddTreat(Flavor new_flavor, int TreatId)
+        {
+            if(TreatId!=0)
+            {
+                _dataBase.TreatFlavors.Add(new TreatFlavor(){TreatId=TreatId, FlavorId=new_flavor.FlavorId});
+            }
+            _dataBase.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public ActionResult DeleteTreat(int IdForDeletingTreatFromFlavor)
+        {
+            var joinEntry = _dataBase.TreatFlavors.FirstOrDefault(entry => entry.TreatFlavorId==IdForDeletingTreatFromFlavor);
+            _dataBase.TreatFlavors.Remove(joinEntry);
+            _dataBase.SaveChanges();
+            return RedirectToAction("Index");
+            
+        }
        
 
 

@@ -15,8 +15,6 @@
     <h3>Please enter  name:         @Html.TextBoxFor(model => model.TreatName )</h3>
     <h3>Please enter date of baked: @Html.EditorFor(model => model.TreatBakedDate, new { @type = "date" })</h3>
     <h3>Please enter type of treat @Html.TextBoxFor(model => model.TreatType)</h3>
-   <h3>@Html.Label("Select Flavor:") @Html.DropDownList("FlavorId","Please Select flavor ")</h3>
-
     <h3><input type="submit" value="Update" /></h3>
 }
 <h3>@Html.ActionLink("Back to list", "Index")</h3>
